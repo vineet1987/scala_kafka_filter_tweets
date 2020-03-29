@@ -24,31 +24,33 @@ Using our own Kafka consumer we will see the important tweets displayed on the c
 
 How this works:
 
-Step 1: Start a ZooKeeper Instance
+Step 1 => Start a ZooKeeper Instance
 From the kafka folder you have setup we will start a zookeper instance. There is a bin folder which has various shell scripts.
 In order to start a zookeper instance we will fire : "./bin/zookeeper-server-start.sh config/zookeeper.properties" .
 Note: If you have a windows OS you will find a .bat file inside bin/windows folder.
 
-Step 2: Start a Kafka Broker Instance
+Step 2 => Start a Kafka Broker Instance
 "./bin/kafka-server-start.sh config/server.properties"
 
-Step 3: Create two topics with replication-factor of 1 and number of partitions per topic = 3
-a) twitter_tweets
+Step 3 => Create two topics with replication-factor of 1 and number of partitions per topic = 3
+
+a) twitter_tweets => 
 /bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic twitter_tweets --replication-factor 1 --partitions 3 --create
-b) important_tweets
+
+b) important_tweets => 
 /bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic important_tweets --replication-factor 1 --partitions 3 --create
 
-Step 4:
+Step 4 => 
 Run our custom producer "TwitterProducer" which is a scala class that will process tweets being streamed from the Twitter Streaming Client and send them into the "twitter_tweets" topic
 
-Step 5:
+Step 5 => 
 This step is not necessary but in order to validate the output we do the same.
 Run our custom consumer "AllTweetsConsumer" which is a scala class that subscribes to the "twitter_tweets" topic and displays the same on the console.
 
-Step 6:
+Step 6 => 
 Run our custom consumer "ImportantTweetsConsumer" which is a scala class that subscribes to the "important_tweets" topic and displays tweets filtered by our own kafka streams class "StreamsFilterTweets" and displays the same on the console. At this point no tweets will be published as we are yet to activate our own KafkaStreams class which is the next step
 
-Step 5:
+Step 7 => 
 Run the custom streams class "StreamsFilterTweets" which will filter all tweets received from the "twitter_tweets" topic, filter them on the basis of number of followers of user tweeting and then publish them into the "important_tweets" topic
 
 After running the above steps if you check the console of the custom Consumer class "ImportantTweetsConsumer" you will see only important tweets as compared to the console of the "AllTweetsConsumer" which displays all tweets.
