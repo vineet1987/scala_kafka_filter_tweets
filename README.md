@@ -21,6 +21,7 @@ Kafka Streams will then read tweets from the topic "twitter_tweets", do some fil
 Using our own Kafka consumer we will see the important tweets displayed on the console.
 
 How this works:
+
 Step 1: Start a ZooKeeper Instance
 From the kafka folder you have setup we will start a zookeper instance. There is a bin folder which has various shell scripts.
 In order to start a zookeper instance we will fire : "./bin/zookeeper-server-start.sh config/zookeeper.properties" .
