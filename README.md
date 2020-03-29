@@ -12,6 +12,8 @@ You need to have a twitter developer account. Once you create a developer accoun
 3) Access Token
 4) Access Token Secret
 
+Replace all the above secrets in the class com.github.vku.kafka.producer.TwitterProducer inside the run() method
+
 This project makes use of Kafka Streams where we read twitter tweets from one topic ("twitter_tweets"), do filtering on the basis of "followers_count" (number of followers should be > 10000) of user who has tweeted and then publish the same into another topic("important_tweets"). 
 
 In order to get tweets into the "twitter_tweets" topic we make use of Twitter Streaming Client [https://github.com/twitter/hbc]
